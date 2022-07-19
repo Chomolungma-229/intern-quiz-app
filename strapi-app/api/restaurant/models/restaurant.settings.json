@@ -19,6 +19,16 @@
     },
     "description": {
       "type": "richtext"
+    },
+    "choices": {
+      "type": "component",
+      "repeatable": true,
+      "component": "choices.choices"
+    },
+    "correct_languages": {
+      "type": "component",
+      "repeatable": true,
+      "component": "correct-languages.correct-languages"
     }
   }
 }

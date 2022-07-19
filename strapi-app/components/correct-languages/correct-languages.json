@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_correct_languages_correct_languages",
+  "info": {
+    "name": "correct_languages",
+    "icon": "democrat",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "category": {
+      "model": "category"
+    },
+    "correct_num": {
+      "type": "integer"
+    }
+  }
+}

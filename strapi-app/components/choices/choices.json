@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_choices_choices",
+  "info": {
+    "name": "choices",
+    "icon": "bars"
+  },
+  "options": {},
+  "attributes": {
+    "test": {
+      "type": "string"
+    },
+    "is_correct": {
+      "type": "boolean"
+    }
+  }
+}
