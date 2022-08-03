@@ -10,11 +10,20 @@
 .parent{
     height: 100%;
     width: 600px;
-    /*コレ*/margin-top: calc(50%);
+    /*コレ*/margin-top: calc(20%);
     margin-left: calc(50% - 500px/2);
     display: block;
     opacity: 0.8;
 }
-.test{
+.chart{
+    height: 100%;
+    width: 100%;
     border: 1px solid #000;
+    border-radius: 15px;
+}
+.stats{
+    height: 30%;
+    width: 100%;
+    border: 1px solid #000;
+    border-radius: 15px;
 }
