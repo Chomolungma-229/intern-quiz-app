@@ -1,0 +1,30 @@
+
+.question-layout{
+    margin: 10px;
+    height: 50%;
+    width: auto;
+}
+.question{
+    text-align: center;
+    height: 70%;
+    background-color: #b6b3b3;
+}
+.output-result{
+    height: 30%;
+    text-align: center;
+}
+.choices-layout{
+    height: 20%;
+    margin: 10px;
+    width: auto;
+    text-align: center;
+    vertical-align: middle;
+}
+.choices-button{
+    width: 100%;
+    height: 100%;
+}
+mat-grid-list{
+    text-align: center;
+    vertical-align: middle;
+}
