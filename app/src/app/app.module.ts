@@ -9,6 +9,10 @@ import { LoginComponent } from './pages/login/login.component';
 import { QuizComponent } from './pages/quiz/quiz.component';
 import { SelectLanguageComponent } from './pages/select-language/select-language.component';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularMaterialModule } from './angular-material.module';
+import { QuestionComponent } from './components/question/question.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +22,15 @@ import { StatisticsComponent } from './pages/statistics/statistics.component';
     LoginComponent,
     QuizComponent,
     SelectLanguageComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    QuestionComponent,
+    ToolbarComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    AngularMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
