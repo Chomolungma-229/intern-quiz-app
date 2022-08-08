@@ -1,6 +1,6 @@
 .css-pattern{
-    width: 500px;
-    height: 500px;
+    height: 75%;
+    width: 100%;
     border-radius: 50%;
     background: #FFF09D;
     display: grid;
@@ -9,9 +9,9 @@
 }
 .parent{
     height: 100%;
-    width: 600px;
+    width: 150%;
     /*コレ*/margin-top: calc(20%);
-    margin-left: calc(50% - 500px/2);
+    margin-left: calc(50% - 150%/2);
     display: block;
     opacity: 0.8;
 }
