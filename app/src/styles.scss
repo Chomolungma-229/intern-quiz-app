@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body {
+    height: 100%;
+}
+body
+{
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background: linear-gradient(to bottom, #000211, #0c0222, #382749);
+    text-align: center;
+}
+.home-button{
+    border: 3px solid #FFF09D;
+    border-radius: 15%;
+    color: #FFF09D;
+    background: transparent;
+}
+footer {
+    position: sticky;
+    top: 100vh;
+    width: 100%;
+}

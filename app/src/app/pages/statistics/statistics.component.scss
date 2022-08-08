@@ -1,0 +1,29 @@
+.css-pattern{
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: #FFF09D;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.parent{
+    height: 100%;
+    width: 600px;
+    /*コレ*/margin-top: calc(20%);
+    margin-left: calc(50% - 500px/2);
+    display: block;
+    opacity: 0.8;
+}
+.chart{
+    height: 100%;
+    width: 100%;
+    border: 1px solid #000;
+    border-radius: 15px;
+}
+.stats{
+    height: 30%;
+    width: 100%;
+    border: 1px solid #000;
+    border-radius: 15px;
+}
