@@ -12,12 +12,16 @@ body
 }
 .home-button{
     border: 3px solid #FFF09D;
-    border-radius: 15%;
+    border-radius: 15px;
     color: #FFF09D;
     background: transparent;
+    width: 30%;
+    height: 100%;
+    font-size: large;
 }
 footer {
     position: sticky;
     top: 100vh;
     width: 100%;
+    height: 50px;
 }
