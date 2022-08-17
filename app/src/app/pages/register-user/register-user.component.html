@@ -1,1 +1,21 @@
-<p>register-user works!</p>
+<div>
+    <mat-form-field class="register-form-field" appearance="fill">
+        <mat-label>ユーザー名</mat-label>
+        <input matInput [formControl]="username" required>
+        <mat-error>必須項目です</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="register-form-field" appearance="fill">
+        <mat-label>パスワード</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required minlength="8">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="password.errors?.['required']">必須項目です</mat-error>
+        <mat-error *ngIf="password.errors?.['minlength']">パスワードは８文字以上を入力してください</mat-error>
+    </mat-form-field>
+</div>
+
+<footer>
+    <button class="home-button">登録</button>
+</footer>
