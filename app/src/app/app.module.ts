@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { AngularMaterialModule } from './angular-material.module';
 import { QuestionComponent } from './components/question/question.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { DialogComponent } from '../app/components/dialog/dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { DialogComponent } from '../app/components/dialog/dialog.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

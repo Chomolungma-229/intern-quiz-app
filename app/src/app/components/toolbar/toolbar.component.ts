@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-toolbar',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor() { }
+  hiddenPath: string[] = ['login', 'register-user'];
+  hidden: boolean = false;
+
+  constructor( public router: Router ) { }
 
   ngOnInit(): void {
+    this.router.events.pipe(
+      filter(f => f instanceof NavigationEnd)
+    )
+      .subscribe((s: any) => {
+        this.hidden = this.hiddenPath.some(e => s.url.includes(e));
+      });
   }
 
 }
