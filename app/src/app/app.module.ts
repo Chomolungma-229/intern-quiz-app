@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 import { QuestionComponent } from './components/question/question.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { DialogComponent } from '../app/components/dialog/dialog.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     StatisticsComponent,
     QuestionComponent,
     ToolbarComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
