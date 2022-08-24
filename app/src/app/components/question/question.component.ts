@@ -1,6 +1,7 @@
 import { Component, OnInit, } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+import { QuizService } from 'src/app/quiz.service';
 
 export interface DialogData {
   animal: string;
@@ -14,7 +15,9 @@ export interface DialogData {
 })
 export class QuestionComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) {}
+  questions:any;
+
+  constructor(public dialog: MatDialog, private quizservice:QuizService) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogComponent, {
@@ -27,7 +30,10 @@ export class QuestionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const query = {
+      language: 1
+    }
+    this.quizservice.getRandomQuestion(query).subscribe(questions => console.log(questions));
   }
-
 
 }
