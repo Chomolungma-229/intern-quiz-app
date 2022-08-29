@@ -10,8 +10,8 @@ export class LoginComponent implements OnInit {
 
   hide = true;
 
-  username = new FormControl('', [Validators.required, Validators.requiredTrue,]);
-  password = new FormControl('some value',[Validators.required, Validators.requiredTrue,]);
+  username = new FormControl('', [Validators.required, ]);
+  password = new FormControl('',[Validators.required, ]);
 
   constructor() { }
 
