@@ -8,7 +8,6 @@ import { RegisterUserComponent } from './pages/register-user/register-user.compo
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 
-
 const routes: Routes = [
   { path: 'quiz', component: QuizComponent },
   { path: 'statistics', component: StatisticsComponent },

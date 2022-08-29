@@ -18,7 +18,6 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { DialogComponent } from '../app/components/dialog/dialog.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
