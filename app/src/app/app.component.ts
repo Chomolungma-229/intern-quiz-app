@@ -21,4 +21,5 @@ export class AppComponent implements OnInit {
         this.hidden = this.hiddenPath.some(e => s.url.includes(e));
       });
   }
+
 }
