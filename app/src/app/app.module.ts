@@ -15,6 +15,8 @@ import { SelectLanguageComponent } from './pages/select-language/select-language
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { QuestionComponent } from './components/question/question.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { DialogComponent } from '../app/components/dialog/dialog.component';
+
 
 
 @NgModule({
@@ -28,7 +30,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     StatisticsComponent,
     QuestionComponent,
     ToolbarComponent,
-
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
