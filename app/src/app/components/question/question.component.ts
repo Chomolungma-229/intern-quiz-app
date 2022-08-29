@@ -34,6 +34,7 @@ export class QuestionComponent implements OnInit {
       language: 1
     }
     this.quizservice.getRandomQuestion(query).subscribe(questions => console.log(questions));
+    this.quizservice.getRandomQuestion(query).subscribe(questions => this.questions = questions);
   }
 
 }
