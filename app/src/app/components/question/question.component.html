@@ -1,5 +1,6 @@
 <mat-card class="question-layout">
     <mat-card-content class="question">
+        {{questions}}
         問題
     </mat-card-content>
     <mat-divider inset></mat-divider>
@@ -9,10 +10,10 @@
 </mat-card>
 <mat-card class="choices-layout">
     <mat-grid-list cols="2" rowHeight="50%">
-        <mat-grid-tile><button class="choices-button">選択肢１</button></mat-grid-tile>
-        <mat-grid-tile><button class="choices-button">選択肢２</button></mat-grid-tile>
-        <mat-grid-tile><button class="choices-button">選択肢３</button></mat-grid-tile>
-        <mat-grid-tile><button class="choices-button">選択肢４</button></mat-grid-tile>
+        <mat-grid-tile><button class="choices-button" (click)="openDialog()">選択肢１</button></mat-grid-tile>
+        <mat-grid-tile><button class="choices-button" (click)="openDialog()">選択肢２</button></mat-grid-tile>
+        <mat-grid-tile><button class="choices-button" (click)="openDialog()">選択肢３</button></mat-grid-tile>
+        <mat-grid-tile><button class="choices-button" (click)="openDialog()">選択肢４</button></mat-grid-tile>
     </mat-grid-list>
 </mat-card>
 

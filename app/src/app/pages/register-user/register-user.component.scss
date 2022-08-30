@@ -1,0 +1,14 @@
+.register-form-field{
+    background-color: #ffffff;
+    width: 80%;
+    margin: 50px auto;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+}
+
+input.example-right-align {
+    -moz-appearance: textfield;
+}

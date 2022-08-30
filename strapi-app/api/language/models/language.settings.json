@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "languages",
+  "info": {
+    "name": "Language"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Program_Language": {
+      "type": "string"
+    }
+  }
+}
