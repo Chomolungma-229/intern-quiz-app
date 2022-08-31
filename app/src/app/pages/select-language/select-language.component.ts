@@ -10,8 +10,6 @@ import { QuizService } from 'src/app/quiz.service';
 })
 export class SelectLanguageComponent implements OnInit {
 
-  languages:Language[] = [];
-
   constructor(private quizservice:QuizService) { }
 
   ngOnInit(): void {
