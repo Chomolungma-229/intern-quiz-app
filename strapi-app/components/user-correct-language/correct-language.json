@@ -2,14 +2,15 @@
   "collectionName": "components_user_correct_language_correct_languages",
   "info": {
     "name": "Correct_Language",
-    "icon": "copyright"
+    "icon": "copyright",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "Language": {
       "model": "language"
     },
-    "Correct_num": {
+    "correct_num": {
       "type": "integer"
     }
   }

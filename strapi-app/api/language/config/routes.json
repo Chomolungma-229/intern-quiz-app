@@ -2,6 +2,13 @@
   "routes": [
     {
       "method": "GET",
+      "path": "/languages/getLanguage",
+      "handler": "language.getLanguage",
+      "config": {
+        "policies": []
+      }
+    },    {
+      "method": "GET",
       "path": "/languages",
       "handler": "language.find",
       "config": {

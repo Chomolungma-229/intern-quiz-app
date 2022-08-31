@@ -2,14 +2,15 @@
   "collectionName": "components_question_choices_choices",
   "info": {
     "name": "choices",
-    "icon": "th-large"
+    "icon": "th-large",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "Choice_text": {
+    "choice_text": {
       "type": "string"
     },
-    "Is_Correct": {
+    "is_correct": {
       "type": "boolean"
     }
   }
