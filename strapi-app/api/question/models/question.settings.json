@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Question_sentence": {
+    "question_sentence": {
       "type": "text"
     },
     "choices": {
@@ -20,7 +20,7 @@
       "repeatable": true,
       "component": "question-choices.choices"
     },
-    "Explanation": {
+    "explanation": {
       "type": "text"
     },
     "language": {

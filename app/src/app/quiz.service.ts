@@ -16,4 +16,7 @@ export class QuizService {
   getRandomQuestion(query: any):Observable<any[]> {
     return this.http.get<any[]>(`http://localhost:1337/questions/random?${qs.stringify(query)}`);
   }
+  getSelectLanguage(query: any):Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:1337/languages`);
+  }
 }

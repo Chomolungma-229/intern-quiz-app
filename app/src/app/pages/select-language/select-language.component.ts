@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { QuizService } from 'src/app/quiz.service';
+
+
 @Component({
   selector: 'app-select-language',
   templateUrl: './select-language.component.html',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SelectLanguageComponent implements OnInit {
 
-  constructor() { }
+  languages:Language[] = [];
+
+  constructor(private quizservice:QuizService) { }
 
   ngOnInit(): void {
+    const query = {
+    }
+    this.quizservice.getSelectLanguage(query).subscribe(languages => console.log(languages));
+
+
   }
 
 }
