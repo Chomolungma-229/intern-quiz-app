@@ -31,7 +31,7 @@ export class QuestionComponent implements OnInit {
 
   ngOnInit(): void {
     const query = {
-      language: 1
+      language: 4
     }
     this.quizservice.getRandomQuestion(query).subscribe(questions => console.log(questions));
     this.quizservice.getRandomQuestion(query).subscribe(questions => this.questions = questions);
