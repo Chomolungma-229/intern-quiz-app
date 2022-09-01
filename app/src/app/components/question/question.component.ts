@@ -1,5 +1,6 @@
 import { Component, OnInit, } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+
 import { DialogComponent } from '../dialog/dialog.component';
 import { QuizService } from 'src/app/quiz.service';
 
@@ -33,6 +34,7 @@ export class QuestionComponent implements OnInit {
     const query = {
       language: 4
     }
+
     this.quizservice.getRandomQuestion(query).subscribe(questions => console.log(questions));
     this.quizservice.getRandomQuestion(query).subscribe(questions => this.questions = questions);
   }
