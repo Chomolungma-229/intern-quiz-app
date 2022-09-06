@@ -25,6 +25,9 @@
     },
     "language": {
       "model": "language"
+    },
+    "output": {
+      "type": "text"
     }
   }
 }

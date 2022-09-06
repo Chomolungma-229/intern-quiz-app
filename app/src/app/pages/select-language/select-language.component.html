@@ -1,7 +1,5 @@
-<div class="languages">
-    <button mat-button class="language-button">JavaScript</button>
-    <button mat-button class="language-button">Java</button>
-    <button mat-button class="language-button">Python</button>
+<div class="languages" *ngFor='let language of languages' >
+    <button mat-button class="language-button" (click)="toQuiz(language.id)" >{{language.program_language}}</button>
 </div>
 
 <footer>

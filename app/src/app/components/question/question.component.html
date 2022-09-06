@@ -1,21 +1,18 @@
 <mat-card class="question-layout">
     <mat-card-content class="question">
-        {{questions.Question_sentence}};
+        {{questions.question_sentence}};
     </mat-card-content>
     <mat-divider inset></mat-divider>
     <mat-card-content class="output-result">
-        出力結果
+        期待される出力結果
+        {{questions.output}}
     </mat-card-content>
 </mat-card>
 <mat-card class="choices-layout">
     <mat-grid-list cols="2" rowHeight="50%">
-        <mat-grid-tile><button class="choices-button" (click)="openDialog()">{{questions.choices[0].Choice_text}}</button></mat-grid-tile>
-        <mat-grid-tile><button class="choices-button" (click)="openDialog()">{{questions.choices[1].Choice_text}}</button></mat-grid-tile>
-        <mat-grid-tile><button class="choices-button" (click)="openDialog()">{{questions.choices[2].Choice_text}}</button></mat-grid-tile>
-        <mat-grid-tile><button class="choices-button" (click)="openDialog()">{{questions.choices[3].Choice_text}}</button></mat-grid-tile>
+        <mat-grid-tile><button class="choices-button" (click)="openDialog(0)">{{questions.choices[0].choice_text}}</button></mat-grid-tile>
+        <mat-grid-tile><button class="choices-button" (click)="openDialog(1)">{{questions.choices[1].choice_text}}</button></mat-grid-tile>
+        <mat-grid-tile><button class="choices-button" (click)="openDialog(2)">{{questions.choices[2].choice_text}}</button></mat-grid-tile>
+        <mat-grid-tile><button class="choices-button" (click)="openDialog(3)">{{questions.choices[3].choice_text}}</button></mat-grid-tile>
     </mat-grid-list>
 </mat-card>
-
-<footer>
-    <button class="home-button">HOMEへ</button>
-</footer>

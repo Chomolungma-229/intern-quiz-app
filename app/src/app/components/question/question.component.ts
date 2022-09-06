@@ -1,8 +1,12 @@
 import { Component, OnInit, } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+
 
 import { DialogComponent } from '../dialog/dialog.component';
 import { QuizService } from 'src/app/quiz.service';
+import { choice } from 'src/app/model/question';
 
 export interface DialogData {
   animal: string;
@@ -16,11 +20,17 @@ export interface DialogData {
 })
 export class QuestionComponent implements OnInit {
 
-  questions:any;
+  questions: any;
+  choice: choice[] = [];
 
-  constructor(public dialog: MatDialog, private quizservice:QuizService) {}
+  constructor(
+    public dialog: MatDialog,
+    private quizservice: QuizService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+    ) { }
 
-  openDialog(): void {
+  openDialog(choice_num:number): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '250px',
     });
@@ -28,15 +38,32 @@ export class QuestionComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
     });
+
+    this.router.navigate(
+      ['/dialog'],
+      {
+        queryParams:
+        {
+          id: 3
+        }
+      }
+    );
   }
 
   ngOnInit(): void {
     const query = {
       language: 4
     }
+    this.activatedRoute.queryParams.pipe().subscribe(
+      params => {
+        query.language = params['id'];
+        console.log(params['id']);
+      }
+    );
 
     this.quizservice.getRandomQuestion(query).subscribe(questions => console.log(questions));
     this.quizservice.getRandomQuestion(query).subscribe(questions => this.questions = questions);
   }
+
 
 }
