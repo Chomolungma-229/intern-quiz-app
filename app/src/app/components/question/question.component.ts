@@ -31,11 +31,12 @@ export class QuestionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let query = {
-      language: 1
+    const query = {
+      language: 4
     }
 
     this.quizservice.getRandomQuestion(query).subscribe(questions => console.log(questions));
+    this.quizservice.getRandomQuestion(query).subscribe(questions => this.questions = questions);
   }
 
 }
