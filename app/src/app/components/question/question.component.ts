@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { DialogComponent } from '../dialog/dialog.component';
 import { QuizService } from 'src/app/quiz.service';
 import { choice } from 'src/app/model/question';
+import { UserService } from 'src/app/user.service';
 
 export interface DialogData {
   animal: string;
@@ -21,34 +22,16 @@ export interface DialogData {
 export class QuestionComponent implements OnInit {
 
   questions: any;
+  user: any;
   choice: choice[] = [];
 
   constructor(
     public dialog: MatDialog,
     private quizservice: QuizService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
-    ) { }
-
-  openDialog(choice_num:number): void {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      width: '250px',
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-    });
-
-    this.router.navigate(
-      ['/dialog'],
-      {
-        queryParams:
-        {
-          id: 3
-        }
-      }
-    );
-  }
+    private router: Router,
+    private userSvc: UserService
+  ) { }
 
   ngOnInit(): void {
     const query = {
@@ -61,9 +44,26 @@ export class QuestionComponent implements OnInit {
       }
     );
 
-    this.quizservice.getRandomQuestion(query).subscribe(questions => console.log(questions));
     this.quizservice.getRandomQuestion(query).subscribe(questions => this.questions = questions);
+    this.quizservice.getRandomQuestion(query).subscribe(questions => console.log(questions));
+    this.userSvc.get(1).subscribe(user => { this.user = user });
   }
 
+  openDialog(choice_num: number): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: { question: this.questions, choiceNum: choice_num, user: this.user},
+      // disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
+  }
+
+  toHome(){
+    this.router.navigate(
+      ['/home']
+    )
+  }
 
 }

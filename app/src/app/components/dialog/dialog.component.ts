@@ -1,6 +1,6 @@
-import { query } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dialog',
@@ -8,18 +8,27 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent implements OnInit {
-  id: any;
+  user: any;
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(
+    public dialogRef: MatDialogRef<DialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
+    if(this.data.question.choices[this.data.choiceNum].is_correct)
+    {
+      this.data.user.Correct_Language[0].correct_num += 1;
+    }
+    console.log(this.data.user.Correct_Language);
+  }
 
-    this.activatedRoute.queryParams.pipe().subscribe(
-      params => {
-        this.id = params['id'];
-        console.log(params['id']);
-      }
-    );
+  toSelectLang() {
+    this.router.navigate(
+      ['/selectlanguege']
+    )
+    this.dialogRef.close();
   }
 
 }

@@ -1,18 +1,27 @@
-<mat-card class="question-layout">
+<div class="question-num" *ngIf="questions">
+    {{questions.language.program_language}} 第{{questions.id}}問
+</div>
+
+<mat-card class="question-layout" *ngIf="questions">
     <mat-card-content class="question">
         {{questions.question_sentence}};
     </mat-card-content>
     <mat-divider inset></mat-divider>
     <mat-card-content class="output-result">
-        期待される出力結果
+        <p>期待される出力結果</p>
         {{questions.output}}
     </mat-card-content>
 </mat-card>
-<mat-card class="choices-layout">
+
+<mat-card class="choices-layout" *ngIf="questions">
     <mat-grid-list cols="2" rowHeight="50%">
-        <mat-grid-tile><button class="choices-button" (click)="openDialog(0)">{{questions.choices[0].choice_text}}</button></mat-grid-tile>
-        <mat-grid-tile><button class="choices-button" (click)="openDialog(1)">{{questions.choices[1].choice_text}}</button></mat-grid-tile>
-        <mat-grid-tile><button class="choices-button" (click)="openDialog(2)">{{questions.choices[2].choice_text}}</button></mat-grid-tile>
-        <mat-grid-tile><button class="choices-button" (click)="openDialog(3)">{{questions.choices[3].choice_text}}</button></mat-grid-tile>
+        <mat-grid-tile *ngFor="let choice of questions.choices; index as i">
+            <button class="choices-button" (click)="openDialog(i)">{{ i + 1
+                }}:{{questions.choices[i].choice_text}}</button>
+        </mat-grid-tile>
     </mat-grid-list>
 </mat-card>
+
+<footer>
+    <button class="home-button" (click)="toHome()">HOMEへ</button>
+</footer>

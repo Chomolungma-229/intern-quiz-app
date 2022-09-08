@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  user: any;
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.activatedRoute.queryParams.pipe().subscribe(
+      params => {
+        this.user = params['user'];
+        console.log(this.user);
+      }
+    );
+
+  }
+
+  toSelectLang() {
+    this.router.navigate(
+      ['/selectlanguege'],
+      {
+        queryParams:
+        {
+          user: JSON.stringify(this.user)
+        }
+      }
+    )
   }
 
 }

@@ -1,9 +1,15 @@
-.correct{
+.is-correct{
     overflow-wrap: break-word;
 }
+.incorrect{
+    overflow-wrap: break-word;
+    color: #0004ff;
+}
+.correct{
+    overflow-wrap: break-word;
+    color: #ff0000;
+}
+
 .next-button{
     margin: 10px auto;
-}
-.judge{
-    color: blue;
 }
