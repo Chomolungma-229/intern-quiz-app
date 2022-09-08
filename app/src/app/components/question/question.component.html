@@ -16,8 +16,9 @@
 <mat-card class="choices-layout" *ngIf="questions">
     <mat-grid-list cols="2" rowHeight="50%">
         <mat-grid-tile *ngFor="let choice of questions.choices; index as i">
-            <button class="choices-button" (click)="openDialog(i)">{{ i + 1
-                }}:{{questions.choices[i].choice_text}}</button>
+            <button class="choices-button" (click)="openDialog(i)">
+                {{ i + 1}}:{{questions.choices[i].choice_text}}
+            </button>
         </mat-grid-tile>
     </mat-grid-list>
 </mat-card>
