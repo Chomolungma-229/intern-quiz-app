@@ -17,11 +17,6 @@ export class DialogComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if(this.data.question.choices[this.data.choiceNum].is_correct)
-    {
-      this.data.user.Correct_Language[0].correct_num += 1;
-    }
-    console.log(this.data.user.Correct_Language);
   }
 
   toSelectLang() {

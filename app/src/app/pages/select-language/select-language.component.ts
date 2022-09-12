@@ -42,13 +42,14 @@ export class SelectLanguageComponent implements OnInit {
     );
   }
 
-  toQuiz(languageId: number){
+  toQuiz(languageId: number, index: number){
     this.router.navigate(
       ['/quiz'],
       {
         queryParams:
         {
-          id: languageId
+          id: languageId,
+          index: index
         }
       }
     );

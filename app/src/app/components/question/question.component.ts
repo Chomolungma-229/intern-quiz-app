@@ -23,6 +23,7 @@ export class QuestionComponent implements OnInit {
 
   questions: any;
   user: any;
+  languageOrder: any;
   choice: choice[] = [];
 
   constructor(
@@ -40,23 +41,21 @@ export class QuestionComponent implements OnInit {
     this.activatedRoute.queryParams.pipe().subscribe(
       params => {
         query.language = params['id'];
-        console.log(params['id']);
+        this.languageOrder = params['index'];
       }
     );
 
     this.quizservice.getRandomQuestion(query).subscribe(questions => this.questions = questions);
-    this.quizservice.getRandomQuestion(query).subscribe(questions => console.log(questions));
     this.userSvc.get(1).subscribe(user => { this.user = user });
   }
 
-  openDialog(choice_num: number): void {
   openDialog(choiceNum: number): void {
     if(this.questions.choices[choiceNum].is_correct){
       this.user.Correct_Language[this.languageOrder].correct_num += 1;
       this.userSvc.update(this.user).subscribe(user => {console.log(user)});
     }
     const dialogRef = this.dialog.open(DialogComponent, {
-      data: { question: this.questions, choiceNum: choice_num, user: this.user},
+      data: { question: this.questions, user: this.user, choiceNum: choiceNum},
       // disableClose: true
     });
 
