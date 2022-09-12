@@ -50,6 +50,11 @@ export class QuestionComponent implements OnInit {
   }
 
   openDialog(choice_num: number): void {
+  openDialog(choiceNum: number): void {
+    if(this.questions.choices[choiceNum].is_correct){
+      this.user.Correct_Language[this.languageOrder].correct_num += 1;
+      this.userSvc.update(this.user).subscribe(user => {console.log(user)});
+    }
     const dialogRef = this.dialog.open(DialogComponent, {
       data: { question: this.questions, choiceNum: choice_num, user: this.user},
       // disableClose: true
