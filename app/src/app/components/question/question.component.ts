@@ -69,5 +69,4 @@ export class QuestionComponent implements OnInit {
       ['/home']
     )
   }
-
 }
