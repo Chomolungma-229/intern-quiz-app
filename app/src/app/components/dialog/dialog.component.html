@@ -1,12 +1,15 @@
-<h1 mat-dialog-title>問題番号</h1>
-<div mat-dialog-content class="correct">
-    <div class="judge">正解不正解</div>
+<h1 mat-dialog-title>第{{data.question.id}}問</h1>
+<div mat-dialog-content class="is-correct">
+    <h3 class="correct" *ngIf="data.question.choices[data.choiceNum].is_correct; else incorrect">
+        正解
+    </h3>
+    <ng-template #incorrect>
+        <h3 class="incorrect">不正解</h3>
+    </ng-template>
 
     <h3>解説</h3>
-    <p>解説の中身</p>
-    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-    <p>あああああああああああああああああああああああああああああああああああああああああああああ</p>
+    <p>{{data.question.explanation}}</p>
 
-    <button mat-raised-button class="next-button">言語選択へ</button>
+    <button mat-raised-button class="next-button" (click)="toSelectLang()">言語選択へ</button>
     <button mat-raised-button class="next-button">次の問題へ</button>
 </div>

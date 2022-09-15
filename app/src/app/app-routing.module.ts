@@ -7,6 +7,7 @@ import { SelectLanguageComponent } from './pages/select-language/select-language
 import { RegisterUserComponent } from './pages/register-user/register-user.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 const routes: Routes = [
   { path: 'quiz', component: QuizComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'register-user', component: RegisterUserComponent },
   { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent},
+  { path: 'dialog', component: DialogComponent}
 ];
 
 @NgModule({

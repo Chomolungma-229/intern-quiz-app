@@ -59,9 +59,6 @@
       "plugin": "users-permissions",
       "configurable": false
     },
-    "User_Id": {
-      "type": "string"
-    },
     "Continue_Days": {
       "type": "integer"
     },

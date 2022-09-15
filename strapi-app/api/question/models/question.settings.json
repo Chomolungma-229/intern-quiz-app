@@ -27,7 +27,7 @@
       "model": "language"
     },
     "output": {
-      "type": "string"
+      "type": "text"
     }
   }
 }

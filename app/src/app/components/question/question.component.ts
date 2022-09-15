@@ -1,8 +1,13 @@
 import { Component, OnInit, } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+
 
 import { DialogComponent } from '../dialog/dialog.component';
 import { QuizService } from 'src/app/quiz.service';
+import { choice } from 'src/app/model/question';
+import { UserService } from 'src/app/user.service';
 
 export interface DialogData {
   animal: string;
@@ -16,13 +21,42 @@ export interface DialogData {
 })
 export class QuestionComponent implements OnInit {
 
-  questions:any;
+  questions: any;
+  user: any;
+  languageOrder: any;
+  choice: choice[] = [];
 
-  constructor(public dialog: MatDialog, private quizservice:QuizService) {}
+  constructor(
+    public dialog: MatDialog,
+    private quizservice: QuizService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private userSvc: UserService
+  ) { }
 
-  openDialog(): void {
+  ngOnInit(): void {
+    const query = {
+      language: 4
+    }
+    this.activatedRoute.queryParams.pipe().subscribe(
+      params => {
+        query.language = params['id'];
+        this.languageOrder = params['index'];
+      }
+    );
+
+    this.quizservice.getRandomQuestion(query).subscribe(questions => this.questions = questions);
+    this.userSvc.get(1).subscribe(user => { this.user = user });
+  }
+
+  openDialog(choiceNum: number): void {
+    if(this.questions.choices[choiceNum].is_correct){
+      this.user.Correct_Language[this.languageOrder].correct_num += 1;
+      this.userSvc.update(this.user).subscribe(user => {console.log(user)});
+    }
     const dialogRef = this.dialog.open(DialogComponent, {
-      width: '250px',
+      data: { question: this.questions, user: this.user, choiceNum: choiceNum},
+      // disableClose: true
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -30,12 +64,9 @@ export class QuestionComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    const query = {
-      language: 4
-    }
-
-    this.quizservice.getRandomQuestion(query).subscribe(questions => console.log(questions));
-    this.quizservice.getRandomQuestion(query).subscribe(questions => this.questions = questions);
+  toHome(){
+    this.router.navigate(
+      ['/home']
+    )
   }
 }
