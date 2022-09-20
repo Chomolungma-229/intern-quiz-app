@@ -8,7 +8,7 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  hiddenPath: string[] = ['login', 'signup'];
+  hiddenPath: string[] = ['selectlanguege', 'home'];
   hidden: boolean = false;
   constructor(
     public router: Router,
