@@ -1,7 +1,3 @@
-<div class="languages" *ngFor='let language of languages;index as i' >
+<div class="languages" *ngFor="let language of languages; index as i" >
     <button mat-button class="language-button" (click)="toQuiz(language.id,i)" >{{language.program_language}}</button>
 </div>
-
-<footer>
-    <button class="home-button">HOMEへ</button>
-</footer>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-home',
@@ -10,29 +10,48 @@ import { ActivatedRoute } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   user: any;
+  starNum: any[] = [];
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private router: Router, private userSvc: UserService) { }
 
   ngOnInit(): void {
-    this.activatedRoute.queryParams.pipe().subscribe(
-      params => {
-        this.user = params['user'];
-        console.log(this.user);
+    this.userSvc.get(1).subscribe(user => {
+      this.user = user;
+
+      let correntNum = 0;
+
+      for(let i = 0; i < this.user.Correct_Language.length; i++){
+        correntNum = this.user.Correct_Language[i].correct_num;
+
+        this.starNum.push(
+          {
+            id: this.user.Correct_Language[i].Language.program_language,
+            star: this.arrayNumberLength(Math.floor(correntNum / 4))
+          })
       }
-    );
+
+    });
 
   }
 
   toSelectLang() {
     this.router.navigate(
-      ['/selectlanguege'],
-      {
-        queryParams:
-        {
-          user: JSON.stringify(this.user)
-        }
-      }
+      ['/selectlanguege']
     )
+  }
+
+  arrayNumberLength(number: number): any[] {
+    const array:any[] = [];
+
+    if(number == 0){
+      return array;
+    }else{
+      for(let i = 0; i < number; i++){
+        array.push(i);
+      }
+
+    return array;
+    }
   }
 
 }

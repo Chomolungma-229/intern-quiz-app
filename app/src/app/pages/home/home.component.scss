@@ -10,9 +10,8 @@
     border-radius: 50%;
 }
 .star-night{
-    height: 70%;
-    width: 100%;
-    display: flex;
+    display: inline-flex;
+    flex-wrap: wrap;
 }
 .star{
     width: 15px;
