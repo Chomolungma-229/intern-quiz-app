@@ -17,12 +17,21 @@ export class DialogComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log(this.data.question);
   }
 
   toSelectLang() {
     this.router.navigate(
       ['/selectlanguege']
     )
+    this.dialogRef.close();
+  }
+
+  toQuiz(){
+    this.router.navigate(
+      ['/quiz']
+    );
+    window.location.reload();
     this.dialogRef.close();
   }
 

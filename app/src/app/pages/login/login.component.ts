@@ -3,6 +3,8 @@ import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { UserService } from 'src/app/user.service';
+import { StorageService } from 'src/app/storage.service';
+
 
 @Component({
   selector: 'app-login',
@@ -18,28 +20,26 @@ export class LoginComponent implements OnInit {
   username = new FormControl('', [Validators.required,]);
   password = new FormControl('', [Validators.required,]);
 
-  constructor(private userSvc: UserService, private router: Router) { }
+  constructor(
+    private userSvc: UserService,
+    private storageSvc: StorageService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
-    this.userSvc.get(1).subscribe(user => { this.user = user });
+    this.userSvc.get(1).subscribe(user => { this.user = user; console.log(this.user);} );
+
   }
 
   login() {
-    this.userdata = {
-      name: this.user.username,
-    };
-    localStorage.setItem('user', JSON.stringify(this.userdata));
+
+    this.storageSvc.setStorage(this.user);
     this.router.navigate(
-      ['/home'],
-      {
-        queryParams:
-        {
-          user: JSON.stringify(this.userdata)
-        }
-      }
+      ['/home']
     )
     // this.user.username = 'konosuke';
-    this.userSvc.update(this.userdata).subscribe(user => {console.log(user)});
+    // this.userSvc.update(this.userdata).subscribe(user => {console.log(user)});
+
   }
 
 }
