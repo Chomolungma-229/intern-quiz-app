@@ -15,5 +15,14 @@ export class UserService {
   }
   update(user:any):Observable<any[]> {
     return this.http.put<any[]>(`http://localhost:1337/users/1`,user);
+  registerUser(mailaddress: string, password: string) {
+    const data = {
+      username: mailaddress,
+      email: mailaddress,
+      password: password,
+    }
+
+    return this.http.post<any>('http://localhost:1337/auth/local/register', data);
+  }
   }
 }
