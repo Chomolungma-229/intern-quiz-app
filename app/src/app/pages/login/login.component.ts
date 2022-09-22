@@ -37,8 +37,8 @@ export class LoginComponent implements OnInit {
     this.router.navigate(
       ['/home']
     )
-    // this.user.username = 'konosuke';
-    // this.userSvc.update(this.userdata).subscribe(user => {console.log(user)});
+    // this.user.Correct_Language[this.languageOrder].correct_num += 1;
+    // this.userSvc.update(this.user).subscribe(user => {console.log(user)});
 
   }
 

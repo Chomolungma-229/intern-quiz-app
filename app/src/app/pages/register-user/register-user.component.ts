@@ -16,4 +16,8 @@ export class RegisterUserComponent implements OnInit {
   }
   username = new FormControl('', [Validators.required]);
   password = new FormControl('', [Validators.required]);
+
+  toLogin(){
+
+  }
 }

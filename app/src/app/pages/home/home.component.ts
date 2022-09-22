@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
       for(let i = 0; i < this.user.Correct_Language.length; i++){
 
         if(mostLanguageId == i){
-          starNum[i] -= dayjs().diff(this.user.Last_Login_At, 'day')
+          starNum[i] -= dayjs().diff(this.user.Last_Login_At, 'day');
         }
 
         this.starResults.push(
@@ -49,8 +49,6 @@ export class HomeComponent implements OnInit {
             star: this.arrayNumberLength(starNum[i])
           })
       }
-
-      console.log(this.user.Correct_Language[mostLanguageId]);
 
     });
 
