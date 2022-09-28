@@ -3,7 +3,9 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs';
+
 import * as qs from 'qs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +15,11 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   get(query: any): Observable<any[]> {
-    return this.http.get<any[]>('http://localhost:1337/users/1');
+    return this.http.get<any[]>(`${environment.API_URL}:1337/users/1`);
   }
 
   update(user: any): Observable<any[]> {
-    return this.http.put<any[]>(`http://localhost:1337/users/1`, user);
+    return this.http.put<any[]>(`${environment.API_URL}:1337/users/1`, user);
   }
 
   registerUser(mailaddress: string, password: string) {
@@ -27,7 +29,7 @@ export class UserService {
       password: password,
     }
 
-    return this.http.post<any>('http://localhost:1337/auth/local/register', data);
+    return this.http.post<any>(`${environment.API_URL}:1337/auth/local/register`, data);
   }
 
   login(identifier: string, password: string) {
@@ -36,7 +38,7 @@ export class UserService {
       password: password,
     }
 
-    return this.http.post<any>('http://localhost:1337/auth/local/', data)
+    return this.http.post<any>(`${environment.API_URL}:1337/auth/local/`, data)
       .pipe(
         catchError(this.handleError)
       );;
