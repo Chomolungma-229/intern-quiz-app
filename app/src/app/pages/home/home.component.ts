@@ -23,25 +23,15 @@ export class HomeComponent implements OnInit {
 
       let correntNum = 0;
       let starNum: any[] = [];
-      let mostLanguageId = 0;
-      let mostLanguageStar = 0;
 
-      for(let i = 0; i < this.user.Correct_Language.length; i++){
+      for (let i = 0; i < this.user.Correct_Language.length; i++) {
 
         correntNum = this.user.Correct_Language[i].correct_num;
         starNum[i] = Math.floor(correntNum / 4);
-
-        if(mostLanguageStar < starNum[i]){
-          mostLanguageId = i;
-          mostLanguageStar = starNum[i];
-        }
       }
 
-      for(let i = 0; i < this.user.Correct_Language.length; i++){
+      for (let i = 0; i < this.user.Correct_Language.length; i++) {
 
-        if(mostLanguageId == i){
-          starNum[i] -= dayjs().diff(this.user.Last_Login_At, 'day');
-        }
 
         this.starResults.push(
           {
@@ -61,16 +51,16 @@ export class HomeComponent implements OnInit {
   }
 
   arrayNumberLength(number: number): any[] {
-    const array:any[] = [];
+    const array: any[] = [];
 
-    if(number == 0){
+    if (number == 0) {
       return array;
-    }else{
-      for(let i = 0; i < number; i++){
+    } else {
+      for (let i = 0; i < number; i++) {
         array.push(i);
       }
 
-    return array;
+      return array;
     }
   }
 
