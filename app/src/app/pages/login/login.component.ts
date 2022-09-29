@@ -25,21 +25,17 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.userdata = {
-      name: this.user.username,
-    };
-    localStorage.setItem('user', JSON.stringify(this.userdata));
-    this.router.navigate(
-      ['/home'],
-      {
-        queryParams:
-        {
-          user: JSON.stringify(this.userdata)
-        }
-      }
-    )
-    // this.user.username = 'konosuke';
-    this.userSvc.update(this.userdata).subscribe(user => {console.log(user)});
+    // this.userdata = {
+    //   name: this.user.username,
+    // };
+    // localStorage.setItem('user', JSON.stringify(this.userdata));
+    // this.router.navigate(
+    //   ['/home']
+    // )
+    this.userSvc.login('atsuumi@gmail.com', '123456')
+      .subscribe((
+        response => { console.log(response) }
+      ));
   }
 
 }
