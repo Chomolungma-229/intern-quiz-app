@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import 'dayjs/locale/ja';
 import * as dayjs from 'dayjs';
@@ -18,9 +18,10 @@ export class LoginComponent implements OnInit {
   hide = true;
   user: any;
   userdata: any;
-
-  username = new FormControl('', [Validators.required,]);
-  password = new FormControl('', [Validators.required,]);
+  loginForm = new FormGroup({
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+  });
 
   constructor(
     private userSvc: UserService,
@@ -29,37 +30,46 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userSvc.get(1).subscribe(user => { this.user = user; console.log(this.user); });
   }
 
   login() {
 
     this.storageSvc.setStorage(this.user);
 
+    this.userSvc.login(this.loginForm.value)
+      .subscribe((
+        response => {
+          console.log(response);
+          this.lostStarNum(response);
+          this.userSvc.update(response.user).subscribe(user => {
+            this.router.navigate(
+              ['/home']
+            )
+          });
+        }
+      ));
+  }
+
+  getPassword() {
+    return this.loginForm.get('password');
+  }
+
+  lostStarNum(loginUser: any) {
     let correntNum: any[] = [];
     let mostCorrectLangId = 0;
     let mostCorrectNum = 0;
 
-    for (let i = 0; i < this.user.Correct_Language.length; i++) {
+    for (let i = 0; i < loginUser.user.Correct_Language.length; i++) {
 
-      correntNum[i] = this.user.Correct_Language[i].correct_num;
+      correntNum[i] = loginUser.user.Correct_Language[i].correct_num;
 
       if (mostCorrectNum < correntNum[i]) {
         mostCorrectLangId = i;
         mostCorrectNum = correntNum[i];
       }
     }
-    this.user.Correct_Language[mostCorrectLangId].correct_num -= dayjs().diff(this.user.Last_Login_At, 'day') * 4;
-    this.userSvc.update(this.user).subscribe(user => {
-      console.log(mostCorrectLangId);
-      this.router.navigate(
-        ['/home']
-      )
-    });
-
-    // this.user.Correct_Language[this.languageOrder].correct_num += 1;
-    // this.userSvc.update(this.user).subscribe(user => {console.log(user)});
-
+    loginUser.user.Correct_Language[mostCorrectLangId].correct_num -= dayjs().diff(loginUser.user.Last_Login_At, 'day') * 4;
+    loginUser.user.Last_Login_At = dayjs();
   }
 
 }
