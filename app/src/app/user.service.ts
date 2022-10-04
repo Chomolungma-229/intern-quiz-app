@@ -15,11 +15,11 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   get(query: any): Observable<any[]> {
-    return this.http.get<any[]>(`${environment.API_URL}:1337/users/1`);
+    return this.http.get<any[]>(`${environment.API_URL}/users/1`);
   }
 
   update(user: any): Observable<any[]> {
-    return this.http.put<any[]>(`${environment.API_URL}:1337/users/1`, user);
+    return this.http.put<any[]>(`${environment.API_URL}/users/1`, user);
   }
 
   registerUser(mailaddress: string, password: string) {
@@ -29,16 +29,16 @@ export class UserService {
       password: password,
     }
 
-    return this.http.post<any>(`${environment.API_URL}:1337/auth/local/register`, data);
+    return this.http.post<any>(`${environment.API_URL}/auth/local/register`, data);
   }
 
-  login(identifier: string, password: string) {
+  login(loginUser: any) {
     const data = {
-      identifier: identifier,
-      password: password,
+      identifier: loginUser.username,
+      password: loginUser.password,
     }
 
-    return this.http.post<any>(`${environment.API_URL}:1337/auth/local/`, data)
+    return this.http.post<any>(`${environment.API_URL}/auth/local/`, data)
       .pipe(
         catchError(this.handleError)
       );;

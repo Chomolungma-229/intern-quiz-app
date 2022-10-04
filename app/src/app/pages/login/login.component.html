@@ -1,21 +1,21 @@
-<div>
-    <mat-form-field class="register-form-field" appearance="fill" *ngIf="user">
+<form [formGroup]="loginForm">
+    <mat-form-field class="register-form-field" appearance="fill">
         <mat-label>ユーザー名</mat-label>
-        <input matInput [formControl]="username" required>
+        <input matInput type="text" formControlName="username" required>
         <mat-error>必須項目です</mat-error>
         <mat-error>ユーザー名かパスワードが間違っています</mat-error>
     </mat-form-field>
 
-    <mat-form-field class="register-form-field" appearance="fill" *ngIf="user">
+    <mat-form-field class="register-form-field" appearance="fill">
         <mat-label>パスワード</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
-        <mat-error *ngIf="password.errors?.['required']">必須項目です</mat-error>
-        <mat-error *ngIf="password.errors?.['requiredTrue']">ユーザー名かパスワードが間違っています</mat-error>
+        <mat-error *ngIf="loginForm.controls['password'].errors?.['required']">必須項目です</mat-error>
     </mat-form-field>
-</div>
+</form>
 
 <footer>
     <button class="home-button" (click)="login()">ログイン</button>

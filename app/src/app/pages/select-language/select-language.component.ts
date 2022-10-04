@@ -27,14 +27,12 @@ export class SelectLanguageComponent implements OnInit {
     this.activatedRoute.queryParams.pipe().subscribe(
       params => {
         this.user = params['user'];
-        console.log(this.user);
       }
     );
 
     const query = {
     }
 
-    this.quizservice.getSelectLanguage(query).subscribe(languages => console.log(languages));
     this.quizservice.getSelectLanguage(query).subscribe(
       ((language: Language[]) => {
         this.languages = language;

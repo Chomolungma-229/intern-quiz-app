@@ -55,12 +55,11 @@ export class QuestionComponent implements OnInit {
       this.userSvc.update(this.user).subscribe(user => {console.log(user)});
     }
     const dialogRef = this.dialog.open(DialogComponent, {
-      data: { question: this.questions, user: this.user, choiceNum: choiceNum},
+      data: { question: this.questions, user: this.user, choiceNum: choiceNum, languageOrder: this.languageOrder},
       // disableClose: true
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
     });
   }
 
