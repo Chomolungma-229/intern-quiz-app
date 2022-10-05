@@ -33,15 +33,13 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-
-    this.storageSvc.setStorage(this.user);
-
     this.userSvc.login(this.loginForm.value)
       .subscribe((
         response => {
           console.log(response);
           this.lostStarNum(response);
-          this.userSvc.update(response.user).subscribe(user => {
+          this.userSvc.update(response.user).subscribe(loginUser => {
+            this.storageSvc.setStorage(loginUser);
             this.router.navigate(
               ['/home']
             )
