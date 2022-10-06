@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import 'dayjs/locale/ja';
+import * as dayjs from 'dayjs';
 
 import { UserService } from 'src/app/user.service';
+import { StorageService } from 'src/app/storage.service';
+
 
 @Component({
   selector: 'app-login',
@@ -14,32 +18,58 @@ export class LoginComponent implements OnInit {
   hide = true;
   user: any;
   userdata: any;
+  loginForm = new FormGroup({
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+  });
 
-  username = new FormControl('', [Validators.required,]);
-  password = new FormControl('', [Validators.required,]);
-
-  constructor(private userSvc: UserService, private router: Router) { }
+  constructor(
+    private userSvc: UserService,
+    private storageSvc: StorageService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
-    this.userSvc.get(1).subscribe(user => { this.user = user });
   }
 
   login() {
-    this.userdata = {
-      name: this.user.username,
-    };
-    localStorage.setItem('user', JSON.stringify(this.userdata));
-    this.router.navigate(
-      ['/home'],
-      {
-        queryParams:
-        {
-          user: JSON.stringify(this.userdata)
+
+    this.storageSvc.setStorage(this.user);
+
+    this.userSvc.login(this.loginForm.value)
+      .subscribe((
+        response => {
+          console.log(response);
+          this.lostStarNum(response);
+          this.userSvc.update(response.user).subscribe(user => {
+            this.router.navigate(
+              ['/home']
+            )
+          });
         }
+      ));
+  }
+
+  getPassword() {
+    return this.loginForm.get('password');
+  }
+
+  lostStarNum(loginUser: any) {
+    let correntNum: any[] = [];
+    let mostCorrectLangId = 0;
+    let mostCorrectNum = 0;
+
+    for (let i = 0; i < loginUser.user.Correct_Language.length; i++) {
+
+      correntNum[i] = loginUser.user.Correct_Language[i].correct_num;
+
+      if (mostCorrectNum < correntNum[i]) {
+        mostCorrectLangId = i;
+        mostCorrectNum = correntNum[i];
       }
-    )
-    // this.user.username = 'konosuke';
-    this.userSvc.update(this.userdata).subscribe(user => {console.log(user)});
+    }
+    loginUser.user.Correct_Language[mostCorrectLangId].correct_num -= dayjs().diff(loginUser.user.Last_Login_At, 'day') * 4;
+    loginUser.user.Last_Login_At = dayjs();
   }
 
 }

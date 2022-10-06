@@ -26,4 +26,12 @@ export class DialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  toQuiz(){
+    this.router.navigate(
+      ['/quiz']
+    );
+    window.location.reload();
+    this.dialogRef.close();
+  }
+
 }

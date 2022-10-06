@@ -2,11 +2,11 @@
     <button class="moon-button"></button>
 </div>
 
-<div class="star-night" *ngFor="let starry of starNum">
+<div class="star-night" *ngFor="let resultByLanguage of starResults">
     <!--星を入れるところ-->
-    <div *ngFor="let item of starry.star">
-        <div *ngIf="0 != starry.star.length">
-            <div [ngSwitch]="starry.languageName">
+    <div *ngFor="let item of resultByLanguage.star">
+        <div *ngIf="0 != resultByLanguage.star.length">
+            <div [ngSwitch]="resultByLanguage.languageName">
                 <div *ngSwitchCase="'JavaScript'">
                     <img class="star" src="../../../assets/star_lightyellow.png">
                 </div>

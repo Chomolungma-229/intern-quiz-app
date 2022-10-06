@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import 'dayjs/locale/ja';
+import * as dayjs from 'dayjs';
+
 import { UserService } from 'src/app/user.service';
 
 @Component({
@@ -13,6 +16,7 @@ export class HomeComponent implements OnInit {
   starNum: any[] = [];
   languageName: string = '';
   title = '';
+  starResults: any[] = [];
 
   constructor(private router: Router, private userSvc: UserService) { }
 
@@ -21,14 +25,22 @@ export class HomeComponent implements OnInit {
       this.user = user;
 
       let correntNum = 0;
+      let starNum: any[] = [];
 
       for (let i = 0; i < this.user.Correct_Language.length; i++) {
-        correntNum = this.user.Correct_Language[i].correct_num;
+
         this.languageName = this.user.Correct_Language[i].Language.program_language;
-        this.starNum.push(
+        correntNum = this.user.Correct_Language[i].correct_num;
+        starNum[i] = Math.floor(correntNum / 4);
+      }
+
+      for (let i = 0; i < this.user.Correct_Language.length; i++) {
+
+
+        this.starResults.push(
           {
             id: this.user.Correct_Language[i].Language.program_language,
-            star: this.arrayNumberLength(Math.floor(correntNum / 4)),
+            star: this.arrayNumberLength(starNum[i]),
             languageName: this.languageName
           })
       }
