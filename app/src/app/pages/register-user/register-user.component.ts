@@ -36,8 +36,12 @@ export class RegisterUserComponent implements OnInit {
 
     this.userSvc.registerUser(this.signupForm.value)
       .subscribe(response => {
-        //ユーザのデータ持って来る、Correct_Languageの中身を書き換える、ユーザの情報をアップデートする
-        response.user.Correct_Language = this.language;
+        let userData: any;
+        //responseを変数に格納
+        userData = response;
+
+        userData.user.Correct_Language = this.language;
+
         this.userSvc.update(response.user).subscribe(
           loginUser => {
             this.storageSvc.setStorage(loginUser);
