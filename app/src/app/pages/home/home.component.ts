@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   user: any;
   starNum: any[] = [];
-  languageName: string = '';
+  languageName: string[] = [];
   title = '';
   starResults: any[] = [];
 
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
 
       for (let i = 0; i < this.user.Correct_Language.length; i++) {
 
-        this.languageName = this.user.Correct_Language[i].Language.program_language;
+        this.languageName[i] = this.user.Correct_Language[i].Language.program_language;
         correntNum = this.user.Correct_Language[i].correct_num;
         starNum[i] = Math.floor(correntNum / 4);
       }
@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
           {
             id: this.user.Correct_Language[i].Language.program_language,
             star: this.arrayNumberLength(starNum[i]),
-            languageName: this.languageName
+            languageName: this.languageName[i],
           })
       }
 
