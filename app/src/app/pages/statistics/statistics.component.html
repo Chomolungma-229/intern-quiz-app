@@ -1,7 +1,9 @@
 <div class="parent">
     <div class="css-pattern">
-        <div class="chart">
-            グラフを入れる
+        <div style="display: block;">
+            <canvas baseChart width="300" height="300" [type]="'line'" [data]="lineChartData"
+                [options]="lineChartOptions" [legend]="lineChartLegend">
+            </canvas>
         </div>
         <div class="stats">
             <p>連続ログイン日数</p>
@@ -9,7 +11,3 @@
         </div>
     </div>
 </div>
-
-<footer>
-    <button class="home-button">HOMEへ</button>
-</footer>
