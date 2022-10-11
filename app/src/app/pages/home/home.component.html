@@ -5,19 +5,19 @@
 <div class="star-night" *ngFor="let resultByLanguage of starResults">
     <!--星を入れるところ-->
     <div *ngFor="let item of resultByLanguage.star">
-        <div *ngIf="0 != resultByLanguage.star.length">
+        <ng-container *ngIf="resultByLanguage.star.length != 0">
             <div [ngSwitch]="resultByLanguage.languageName">
                 <div *ngSwitchCase="'JavaScript'">
                     <img class="star" src="../../../assets/star_lightyellow.png">
                 </div>
                 <div *ngSwitchCase="'Java'">
-                    <img class="star" src="../../../assets/red_star (1).png">
+                    <img class="star" src="../../../assets/red_star.png">
                 </div>
                 <div *ngSwitchCase="'Python'">
                     <img class="star" src="../../../assets/blue_star.png">
                 </div>
             </div>
-        </div>
+        </ng-container>
     </div>
 </div>
 
