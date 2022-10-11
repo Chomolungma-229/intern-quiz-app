@@ -7,11 +7,11 @@ export class StorageService {
 
   constructor() { }
 
-  setStorage(user: any){
+  setStorage(user: any) {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
-  getStorage(keyName: any){
-    return localStorage.getItem(keyName)
+  getStorage(keyName: string) {
+    return localStorage.getItem(keyName);
   }
 }

@@ -6,6 +6,7 @@ import { AngularMaterialModule } from './angular-material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgChartsModule } from 'ng2-charts';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { RegisterUserComponent } from './pages/register-user/register-user.component';
@@ -40,6 +41,7 @@ import { DialogComponent } from '../app/components/dialog/dialog.component';
     ReactiveFormsModule,
     HttpClientModule,
     NgChartsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

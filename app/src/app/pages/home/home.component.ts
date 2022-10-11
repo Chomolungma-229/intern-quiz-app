@@ -4,6 +4,7 @@ import 'dayjs/locale/ja';
 import * as dayjs from 'dayjs';
 
 import { UserService } from 'src/app/user.service';
+import { StorageService } from 'src/app/storage.service';
 
 @Component({
   selector: 'app-home',
@@ -13,12 +14,21 @@ import { UserService } from 'src/app/user.service';
 export class HomeComponent implements OnInit {
 
   user: any;
+  starNum: any[] = [];
+  languageName: string[] = [];
+  title = '';
   starResults: any[] = [];
 
-  constructor(private router: Router, private userSvc: UserService) { }
+  constructor(
+    private router: Router,
+    private userSvc: UserService,
+    private storageSvc: StorageService
+  ) { }
 
   ngOnInit(): void {
-    this.userSvc.get(1).subscribe(user => {
+    let loginUser: any = JSON.parse(this.storageSvc.getStorage('user') || '{}');
+    console.log(loginUser);
+    this.userSvc.get(loginUser.id).subscribe(user => {
       this.user = user;
 
       let correntNum = 0;
@@ -26,19 +36,20 @@ export class HomeComponent implements OnInit {
 
       for (let i = 0; i < this.user.Correct_Language.length; i++) {
 
+        this.languageName[i] = this.user.Correct_Language[i].Language.program_language;
         correntNum = this.user.Correct_Language[i].correct_num;
         starNum[i] = Math.floor(correntNum / 4);
       }
-
+      console.log(this.user);
       for (let i = 0; i < this.user.Correct_Language.length; i++) {
-
-
         this.starResults.push(
           {
             id: this.user.Correct_Language[i].Language.program_language,
-            star: this.arrayNumberLength(starNum[i])
+            star: this.arrayNumberLength(starNum[i]),
+            languageName: this.languageName[i],
           })
       }
+
 
     });
 

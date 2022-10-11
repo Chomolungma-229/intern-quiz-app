@@ -1,38 +1,46 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, single } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs';
 
 import * as qs from 'qs';
 import { environment } from 'src/environments/environment';
+import { LanguageService } from './language.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private http: HttpClient) { }
+  language: any;
 
-  get(query: any): Observable<any[]> {
-    return this.http.get<any[]>(`${environment.API_URL}/users/1`);
+  constructor(
+    private http: HttpClient,
+    private languageSvc: LanguageService
+  ) { }
+
+  get(id: any): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.API_URL}/users/${id}`);
   }
 
   update(user: any): Observable<any[]> {
-    return this.http.put<any[]>(`${environment.API_URL}/users/1`, user);
+    console.log(`${environment.API_URL}/users/${user.id}`)
+    return this.http.put<any[]>(`${environment.API_URL}/users/${user.id}`, user);
   }
 
-  registerUser(mailaddress: string, password: string) {
+  registerUser(signupUser: any) {
     const data = {
-      username: mailaddress,
-      email: mailaddress,
-      password: password,
+      email: signupUser.email,
+      username: signupUser.email,
+      password: signupUser.password,
     }
 
     return this.http.post<any>(`${environment.API_URL}/auth/local/register`, data);
   }
 
   login(loginUser: any) {
+
     const data = {
       identifier: loginUser.username,
       password: loginUser.password,
