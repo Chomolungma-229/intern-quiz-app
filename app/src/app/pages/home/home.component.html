@@ -2,12 +2,25 @@
     <button class="moon-button"></button>
 </div>
 
-<div class="star-night" *ngFor="let resultByLanguage of starResults"> <!--星を入れるところ-->
+<div class="star-night" *ngFor="let resultByLanguage of starResults">
+    <!--星を入れるところ-->
     <div *ngFor="let item of resultByLanguage.star">
-        <div *ngIf="0 != resultByLanguage.star.length"><img class="star" src="../../../assets/star_lightyellow.png"></div>
+        <ng-container *ngIf="resultByLanguage.star.length != 0">
+            <div [ngSwitch]="resultByLanguage.languageName">
+                <div *ngSwitchCase="'JavaScript'">
+                    <img class="star" src="../../../assets/star_lightyellow.png">
+                </div>
+                <div *ngSwitchCase="'Java'">
+                    <img class="star" src="../../../assets/red_star.png">
+                </div>
+                <div *ngSwitchCase="'Python'">
+                    <img class="star" src="../../../assets/blue_star.png">
+                </div>
+            </div>
+        </ng-container>
     </div>
 </div>
 
 <footer>
-    <button class="home-button" (click) = "toSelectLang()">言語選択へ</button>
+    <button class="home-button" (click)="toSelectLang()">言語選択へ</button>
 </footer>

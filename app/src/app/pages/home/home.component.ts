@@ -14,6 +14,9 @@ import { StorageService } from 'src/app/storage.service';
 export class HomeComponent implements OnInit {
 
   user: any;
+  starNum: any[] = [];
+  languageName: string[] = [];
+  title = '';
   starResults: any[] = [];
 
   constructor(
@@ -33,6 +36,7 @@ export class HomeComponent implements OnInit {
 
       for (let i = 0; i < this.user.Correct_Language.length; i++) {
 
+        this.languageName[i] = this.user.Correct_Language[i].Language.program_language;
         correntNum = this.user.Correct_Language[i].correct_num;
         starNum[i] = Math.floor(correntNum / 4);
       }
@@ -41,7 +45,8 @@ export class HomeComponent implements OnInit {
         this.starResults.push(
           {
             id: this.user.Correct_Language[i].Language.program_language,
-            star: this.arrayNumberLength(starNum[i])
+            star: this.arrayNumberLength(starNum[i]),
+            languageName: this.languageName[i],
           })
       }
 
