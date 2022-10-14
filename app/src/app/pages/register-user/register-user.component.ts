@@ -53,7 +53,7 @@ export class RegisterUserComponent implements OnInit {
   }
 
   languageSet() {
-    this.languageSvc.getLanguage(1).subscribe(
+    this.languageSvc.getLanguage().subscribe(
       language => {
         for (let i = 0; i < language.length; i++) {
           this.language[i] = {

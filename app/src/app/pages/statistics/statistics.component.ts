@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ChartConfiguration, ChartOptions, ChartType } from "chart.js";
+import { Router } from '@angular/router';
 import 'dayjs/locale/ja';
 import * as dayjs from 'dayjs';
 
@@ -40,7 +41,7 @@ export class StatisticsComponent implements OnInit {
         pointBackgroundColor: 'yellow',
       },
       {
-        data: [0, 25, 50, 60, 40, 80, 90],
+        data: [0, 0, 0, 0, 0, 0, 0],
         label: 'Java',
         fill: false,
         tension: 0,
@@ -49,7 +50,7 @@ export class StatisticsComponent implements OnInit {
         pointBackgroundColor: 'red',
       },
       {
-        data: [0, 25, 50, 30, 100, 50, 90],
+        data: [0, 0, 0, 0, 0, 0, 0],
         label: 'Python',
         fill: false,
         tension: 0,
@@ -74,15 +75,23 @@ export class StatisticsComponent implements OnInit {
     private answerSvc: QuestionAnswerService,
     private storageSvc: StorageService,
     private languageSvc: LanguageService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    let user: any = '';
-    user = JSON.parse(this.storageSvc.getStorage('user') || '{}');
-    let language: any;
+    this.chartDataSets();
+  }
+
+  toHome() {
+    this.router.navigate(
+      ['/home']
+    )
+  }
+
+  chartDataSets() {
+    const user: any = JSON.parse(this.storageSvc.getStorage('user') || '{}');
     const oneWeekAgoDate: any = dayjs().subtract(7, 'day').format('YYYY-MM-DD');
     this.languageSvc.getLanguage().subscribe(response => {
-      console.log(response)
       const functions = response.map(language => {
         let query: any = {
           _where: [
@@ -97,13 +106,10 @@ export class StatisticsComponent implements OnInit {
         response.forEach((questionAnswer, index) => {
           this.answerRate = this.answerSvc.getCorrectAnswerRate(questionAnswer);
           this.lineChartData.datasets[index].data = this.answerRate;
-          console.log(index, this.answerRate);
         })
         this.isChart = true;
       });
     });
-
   }
-
 
 }

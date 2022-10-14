@@ -12,7 +12,7 @@ export class LanguageService {
 
   constructor(private http: HttpClient) { }
 
-  getLanguage(query: any) {
+  getLanguage() {
     return this.http.get<any[]>(`${environment.API_URL}/languages`);
   }
 
