@@ -1,8 +1,8 @@
 <div class="parent">
     <div class="css-pattern">
-        <div class="canvas">
-            <canvas baseChart class="chart" [type]="'line'" [data]="lineChartData" [options]="lineChartOptions"
-                [legend]="lineChartLegend">
+        <div class="canvas" *ngIf="isChart">
+            <canvas baseChart class="chart" width="350" height="350" [type]="'line'" [data]="lineChartData"
+                [options]="lineChartOptions" [legend]="lineChartLegend">
             </canvas>
         </div>
         <div class="stats">
