@@ -12,7 +12,7 @@ export class ToolbarComponent implements OnInit {
   hiddenPath: string[] = ['login', 'register-user'];
   hidden: boolean = false;
 
-  constructor( public router: Router ) { }
+  constructor(public router: Router) { }
 
   ngOnInit(): void {
     this.router.events.pipe(

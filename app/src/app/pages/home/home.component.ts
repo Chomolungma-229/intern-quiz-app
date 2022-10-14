@@ -61,6 +61,12 @@ export class HomeComponent implements OnInit {
     )
   }
 
+  toStatistics() {
+    this.router.navigate(
+      ['/statistics']
+    )
+  }
+
   arrayNumberLength(number: number): any[] {
     const array: any[] = [];
 
