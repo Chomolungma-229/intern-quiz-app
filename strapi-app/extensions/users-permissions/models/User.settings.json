@@ -59,7 +59,7 @@
       "plugin": "users-permissions",
       "configurable": false
     },
-    "Continue_Days": {
+    "continue_days": {
       "type": "integer"
     },
     "Star_Num": {
