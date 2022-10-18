@@ -8,6 +8,8 @@ import { DialogComponent } from '../dialog/dialog.component';
 import { QuizService } from 'src/app/quiz.service';
 import { choice } from 'src/app/model/question';
 import { UserService } from 'src/app/user.service';
+import { QuestionAnswerService } from 'src/app/question-answer.service';
+import * as dayjs from 'dayjs';
 
 export interface DialogData {
   animal: string;
@@ -31,7 +33,8 @@ export class QuestionComponent implements OnInit {
     private quizservice: QuizService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private userSvc: UserService
+    private userSvc: UserService,
+    private answerSvc: QuestionAnswerService,
   ) { }
 
   ngOnInit(): void {
@@ -46,16 +49,28 @@ export class QuestionComponent implements OnInit {
     );
 
     this.quizservice.getRandomQuestion(query).subscribe(questions => this.questions = questions);
-    this.userSvc.get(1).subscribe(user => { this.user = user });
+    this.userSvc.get(1).subscribe(user => { this.user = user; console.log(this.user) });
   }
 
   openDialog(choiceNum: number): void {
-    if(this.questions.choices[choiceNum].is_correct){
+    console.log(this.questions, choiceNum);
+    const answerData = {
+      users_permissions_user: this.user.id,
+      is_correct: this.questions.choices[choiceNum].is_correct,
+      question: this.questions.id,
+      answer_at: dayjs(),
+    };
+    console.log(answerData.users_permissions_user, answerData.question);
+    this.answerSvc.registerQuestionAnswer(answerData).subscribe(answer => {
+      console.log(answer);
+    });
+
+    if (this.questions.choices[choiceNum].is_correct) {
       this.user.Correct_Language[this.languageOrder].correct_num += 1;
-      this.userSvc.update(this.user).subscribe(user => {console.log(user)});
+      this.userSvc.update(this.user).subscribe(user => { console.log(user) });
     }
     const dialogRef = this.dialog.open(DialogComponent, {
-      data: { question: this.questions, user: this.user, choiceNum: choiceNum, languageOrder: this.languageOrder},
+      data: { question: this.questions, user: this.user, choiceNum: choiceNum, languageOrder: this.languageOrder },
       // disableClose: true
     });
 
@@ -63,7 +78,7 @@ export class QuestionComponent implements OnInit {
     });
   }
 
-  toHome(){
+  toHome() {
     this.router.navigate(
       ['/home']
     )

@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
       .subscribe((
         response => {
           console.log(response);
+          localStorage.setItem('token', response.jwt);
           this.lostStarNum(response);
           this.userSvc.update(response.user).subscribe(loginUser => {
             this.storageSvc.setStorage(loginUser);

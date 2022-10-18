@@ -7,7 +7,7 @@
     justify-content: space-around;
     justify-items: center;
     align-items: center;
-    align-content: stretch;
+    align-content: center;
 }
 .parent{
     height: 70%;
@@ -17,17 +17,13 @@
     display: block;
     opacity: 0.8;
 }
-.chart{
-    width: 200%;
-    height: 100%;
+.canvas{
     border: 1px solid #000000;
-    border-radius: 35px;
-    margin-top: 95px;
+    border-radius: 15px;
 }
 .stats{
-    height: 50%;
-    width: 200%;
+    width: 100%;
     border: 1px solid #000;
-    border-radius: 35px;
+    border-radius: 15px;
     margin-top: 0px;
 }

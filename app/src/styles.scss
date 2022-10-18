@@ -1,16 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body {
+html,
+body {
     height: 100%;
 }
-body
-{
+
+body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     background: linear-gradient(to bottom, #000211, #0c0222, #382749);
     text-align: center;
 }
-.home-button{
+
+.home-button {
     border: 3px solid #FFF09D;
     border-radius: 15px;
     color: #FFF09D;
@@ -19,6 +21,7 @@ body
     height: 100%;
     font-size: large;
 }
+
 footer {
     position: sticky;
     top: 100vh;
