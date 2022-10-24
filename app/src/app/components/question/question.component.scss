@@ -1,32 +1,38 @@
-.question-num{
+.question-num {
     color: #FFF09D;
 }
-.question-layout{
+
+.question-layout {
     margin: 10px;
     height: 50%;
     width: auto;
 }
-.question{
+
+.question {
     text-align: center;
     height: 70%;
-    background-color: #b6b3b3;
+    background-color: #d9d9d9;
 }
-.output-result{
+
+.output-result {
     height: 30%;
     text-align: center;
 }
-.choices-layout{
+
+.choices-layout {
     height: 20%;
     margin: 10px;
     width: auto;
     text-align: center;
     vertical-align: middle;
 }
-.choices-button{
+
+.choices-button {
     width: 100%;
     height: 100%;
 }
-mat-grid-list{
+
+mat-grid-list {
     text-align: center;
     vertical-align: middle;
 }

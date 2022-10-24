@@ -1,4 +1,4 @@
-.css-pattern{
+.css-pattern {
     height: 100%;
     width: 100%;
     border-radius: 50%;
@@ -9,7 +9,8 @@
     align-items: center;
     align-content: center;
 }
-.parent{
+
+.parent {
     height: 70%;
     width: 150%;
     margin-top: calc(20%);
@@ -17,13 +18,16 @@
     display: block;
     opacity: 0.8;
 }
-.canvas{
+
+.canvas {
     border: 1px solid #000000;
     border-radius: 15px;
 }
-.stats{
+
+.stats {
     width: 100%;
     border: 1px solid #000;
     border-radius: 15px;
     margin-top: 0px;
+    font-size: large;
 }
