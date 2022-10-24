@@ -41,6 +41,7 @@ export class RegisterUserComponent implements OnInit {
         userData = response;
 
         userData.user.Correct_Language = this.language;
+        userData.user.continue_days = 0;
 
         this.userSvc.update(response.user).subscribe(
           loginUser => {

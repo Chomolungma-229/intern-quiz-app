@@ -26,7 +26,7 @@ export class QuestionComponent implements OnInit {
 
   questions: any;
   user: any;
-  languageOrder: any;
+  languageOrder: number = 0;
   choice: choice[] = [];
 
   constructor(
@@ -43,6 +43,7 @@ export class QuestionComponent implements OnInit {
     const query = {
       language: 4
     }
+    this.languageOrder = 0;
     this.activatedRoute.queryParams.pipe().subscribe(
       params => {
         query.language = params['id'];
@@ -62,16 +63,17 @@ export class QuestionComponent implements OnInit {
       question: this.questions.id,
       answer_at: dayjs(),
     };
-    console.log(answerData.users_permissions_user, answerData.question);
+    // console.log(answerData.users_permissions_user, answerData.question);
     this.answerSvc.registerQuestionAnswer(answerData).subscribe(answer => {
     });
     if (this.questions.choices[choiceNum].is_correct) {
-      this.user.correct_language[this.languageOrder].correct_num += 1;
-      this.userSvc.update(this.user).subscribe();
+      this.user.Correct_Language[this.languageOrder].correct_num += 1;
+      this.userSvc.update(this.user).subscribe(response => console.log(this.user));
+      this.storageSvc.setStorage(this.user);
     }
     const dialogRef = this.dialog.open(DialogComponent, {
       data: { question: this.questions, user: this.user, choiceNum: choiceNum, languageOrder: this.languageOrder },
-      // disableClose: true
+      disableClose: true
     });
 
   }

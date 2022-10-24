@@ -17,7 +17,8 @@ export class LoginComponent implements OnInit {
 
   hide = true;
   user: any;
-  userdata: any;
+  isContinue: number = 0;
+
   loginForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
@@ -36,9 +37,13 @@ export class LoginComponent implements OnInit {
     this.userSvc.login(this.loginForm.value)
       .subscribe((
         response => {
-          console.log(response);
           localStorage.setItem('token', response.jwt);
+          this.isContinue = dayjs().diff(response.user.Last_Login_At, 'day');
+          console.log(this.isContinue);
           this.lostStarNum(response);
+          if (this.isContinue == 1) {
+            response.user.continue_days += 1;
+          }
           this.userSvc.update(response.user).subscribe(loginUser => {
             this.storageSvc.setStorage(loginUser);
             this.router.navigate(
@@ -54,20 +59,22 @@ export class LoginComponent implements OnInit {
   }
 
   lostStarNum(loginUser: any) {
-    let correntNum: any[] = [];
+    let correctNum: any[] = [];
     let mostCorrectLangId = 0;
     let mostCorrectNum = 0;
 
     for (let i = 0; i < loginUser.user.Correct_Language.length; i++) {
 
-      correntNum[i] = loginUser.user.Correct_Language[i].correct_num;
+      correctNum[i] = loginUser.user.Correct_Language[i].correct_num;
 
-      if (mostCorrectNum < correntNum[i]) {
+      if (mostCorrectNum < correctNum[i]) {
         mostCorrectLangId = i;
-        mostCorrectNum = correntNum[i];
+        mostCorrectNum = correctNum[i];
       }
     }
-    loginUser.user.Correct_Language[mostCorrectLangId].correct_num -= dayjs().diff(loginUser.user.Last_Login_At, 'day') * 4;
+    if (this.isContinue <= 2) {
+      loginUser.user.Correct_Language[mostCorrectLangId].correct_num -= (this.isContinue - 1) * 4;
+    }
     loginUser.user.Last_Login_At = dayjs();
   }
 
