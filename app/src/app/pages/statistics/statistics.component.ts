@@ -18,7 +18,6 @@ export class StatisticsComponent implements OnInit {
 
   today: any = dayjs();
   answerRate: any[] = [];
-  user: any;
   isChart = false;
 
   public lineChartData: ChartConfiguration<'line'>['data'] = {
@@ -90,13 +89,13 @@ export class StatisticsComponent implements OnInit {
   }
 
   chartDataSets() {
-    this.user = JSON.parse(this.storageSvc.getStorage('user') || '{}');
+    const user: any = JSON.parse(this.storageSvc.getStorage('user') || '{}');
     const oneWeekAgoDate: any = dayjs().subtract(7, 'day').format('YYYY-MM-DD');
     this.languageSvc.getLanguage().subscribe(response => {
       const functions = response.map(language => {
         let query: any = {
           _where: [
-            { users_permissions_user: this.user.id },
+            { users_permissions_user: user.id },
             { answer_at_gt: oneWeekAgoDate },
             { 'question.language': language.id }
           ]

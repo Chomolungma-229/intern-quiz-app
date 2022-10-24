@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
     console.log(loginUser);
     this.userSvc.get(loginUser.id).subscribe(user => {
       this.user = user;
+
       let correntNum = 0;
       let starNum: any[] = [];
 

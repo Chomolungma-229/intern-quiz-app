@@ -25,7 +25,7 @@ export class UserService {
   }
 
   update(user: any): Observable<any[]> {
-    console.log(`${environment.API_URL}/users/${user.id}`, 'success!!')
+    console.log(`${environment.API_URL}/users/${user.id}`)
     return this.http.put<any[]>(`${environment.API_URL}/users/${user.id}`, user);
   }
 

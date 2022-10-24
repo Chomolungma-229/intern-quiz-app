@@ -10,17 +10,17 @@ import { filter } from 'rxjs/operators';
 export class ToolbarComponent implements OnInit {
 
   hiddenPath: string[] = ['login', 'register-user'];
-  hidden: boolean = true;
+  hidden: boolean = false;
 
   constructor(public router: Router) { }
 
   ngOnInit(): void {
-    // this.router.events.pipe(
-    //   filter(f => f instanceof NavigationEnd)
-    // )
-    //   .subscribe((s: any) => {
-    //     this.hidden = this.hiddenPath.some(e => s.url.includes(e));
-    //   });
+    this.router.events.pipe(
+      filter(f => f instanceof NavigationEnd)
+    )
+      .subscribe((s: any) => {
+        this.hidden = this.hiddenPath.some(e => s.url.includes(e));
+      });
   }
 
 }

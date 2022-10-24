@@ -15,13 +15,13 @@ export class SelectLanguageComponent implements OnInit {
 
   user: any;
 
-  languages: Language[] = [];
+  languages:Language[] = [];
 
   constructor(
-    private quizservice: QuizService,
+    private quizservice:QuizService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) { }
+    ) { }
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.pipe().subscribe(
@@ -36,11 +36,11 @@ export class SelectLanguageComponent implements OnInit {
     this.quizservice.getSelectLanguage(query).subscribe(
       ((language: Language[]) => {
         this.languages = language;
-      })
+        })
     );
   }
 
-  toQuiz(languageId: number, index: number) {
+  toQuiz(languageId: number, index: number){
     this.router.navigate(
       ['/quiz'],
       {
@@ -51,12 +51,6 @@ export class SelectLanguageComponent implements OnInit {
         }
       }
     );
-  }
-
-  toHome() {
-    this.router.navigate(
-      ['/home']
-    )
   }
 
 }
