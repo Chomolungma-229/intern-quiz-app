@@ -3,7 +3,6 @@
         <mat-label>ユーザー名</mat-label>
         <input matInput type="text" formControlName="username" required>
         <mat-error>必須項目です</mat-error>
-        <mat-error>ユーザー名かパスワードが間違っています</mat-error>
     </mat-form-field>
 
     <mat-form-field class="register-form-field" appearance="fill">
@@ -18,5 +17,5 @@
 </form>
 
 <footer>
-    <button class="home-button" (click)="login()">ログイン</button>
+    <button class="home-button" (click)="login()" [disabled]="loginForm.invalid">ログイン</button>
 </footer>

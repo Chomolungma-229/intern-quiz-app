@@ -18,5 +18,5 @@
 </form>
 
 <footer>
-    <button class="home-button" (click)="registerUser()">登録</button>
+    <button class="home-button" (click)="registerUser()" [disabled]="signupForm.invalid">登録</button>
 </footer>
