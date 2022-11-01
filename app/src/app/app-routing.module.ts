@@ -10,13 +10,14 @@ import { LoginComponent } from './pages/login/login.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 
 const routes: Routes = [
+  { path: '', component: LoginComponent },
   { path: 'quiz', component: QuizComponent },
   { path: 'statistics', component: StatisticsComponent },
   { path: 'selectlanguege', component: SelectLanguageComponent },
   { path: 'register-user', component: RegisterUserComponent },
-  { path: 'home', component: HomeComponent},
-  { path: 'login', component: LoginComponent},
-  { path: 'dialog', component: DialogComponent}
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'dialog', component: DialogComponent }
 ];
 
 @NgModule({
