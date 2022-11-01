@@ -1,6 +1,6 @@
 <form [formGroup]="signupForm">
     <mat-form-field class="register-form-field" appearance="fill">
-        <mat-label>ユーザー名</mat-label>
+        <mat-label>メールアドレス</mat-label>
         <input matInput formControlName="email" required>
         <mat-error>必須項目です</mat-error>
     </mat-form-field>
@@ -18,5 +18,8 @@
 </form>
 
 <footer>
-    <button class="home-button" (click)="registerUser()">登録</button>
+    <div>
+        <button class="home-button" (click)="registerUser()" [disabled]="signupForm.invalid">登録</button>
+    </div>
+    <button mat-button class="to-login" (click)="toLogin()">登録済みの方はこちら</button>
 </footer>
