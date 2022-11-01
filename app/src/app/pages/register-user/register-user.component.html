@@ -18,5 +18,8 @@
 </form>
 
 <footer>
-    <button class="home-button" (click)="registerUser()" [disabled]="signupForm.invalid">登録</button>
+    <div>
+        <button class="home-button" (click)="registerUser()" [disabled]="signupForm.invalid">登録</button>
+    </div>
+    <button mat-button class="to-login" (click)="toLogin()">登録済みの方はこちら</button>
 </footer>

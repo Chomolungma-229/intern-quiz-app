@@ -17,5 +17,8 @@
 </form>
 
 <footer>
-    <button class="home-button" (click)="login()" [disabled]="loginForm.invalid">ログイン</button>
+    <div>
+        <button class="home-button" (click)="login()" [disabled]="loginForm.invalid">ログイン</button>
+    </div>
+    <button mat-button class="to-register" (click)="toRegister()">登録していない方はこちら</button>
 </footer>

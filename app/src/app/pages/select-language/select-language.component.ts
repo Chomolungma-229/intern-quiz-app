@@ -18,7 +18,7 @@ export class SelectLanguageComponent implements OnInit {
   languages: Language[] = [];
 
   constructor(
-    private quizservice: QuizService,
+    private quizService: QuizService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) { }
@@ -33,7 +33,7 @@ export class SelectLanguageComponent implements OnInit {
     const query = {
     }
 
-    this.quizservice.getSelectLanguage(query).subscribe(
+    this.quizService.getSelectLanguage(query).subscribe(
       ((language: Language[]) => {
         this.languages = language;
       })
